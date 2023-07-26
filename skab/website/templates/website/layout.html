@@ -1,15 +1,29 @@
 {% load static %}
 
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'website/styles.css' %}">
+    <link href="{% static 'website/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'website/styles1.css' %}">
 </head>
 <body>
-    {% block body %}{% endblock %}
+    <div class="header">
+        <div class="header-logo">SKAB</div>
+        <div class="header-links">
+            <ul>
+                <li><a href="#">Stock</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Qr</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        {% block main %}{% endblock %}
+    </div>
+    <div class="footer">footer</div>
 </body>
 </html>

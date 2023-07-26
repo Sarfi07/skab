@@ -1,3 +1,90 @@
 * {
     font-family: 'Roboto', sans-serif;
+    /* border: 2px solid red; */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main {
+    flex: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 8px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgb(238, 236, 236);
+}
+
+.header-links>ul {
+    display: flex;
+    gap: 16px;
+    padding: 0 8px;
+    margin: 0;
+}
+
+.header-links>ul>li>a {
+    text-decoration: none;
+    font-size: 16px;
+    color: black
+}
+
+.header-links>ul>li {
+    list-style: none;
+}
+
+.new_bill {
+    margin: 16px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+
+}
+
+.new_bill_btn {
+    height: 48px;
+    width: 80vw;
+    margin: auto;
+    font-size: 24px;
+    background: rgb(64, 62, 113);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(80, 124, 176, 1) 43%, rgba(0, 212, 255, 1) 100%);
+    color: white;
+    border-radius: 10px;
+
+}
+
+.last_transactions_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:rgb(64, 62, 113);
+    height: 80vh;
+    width: 80vw;
+    background-color: darkgrey;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.last_transaction {
+    background-color: red;
+}
+
+.footer {
+    margin-top: 48px;
+    padding: 24px 0;
+    width: auto;
+    background-color: rgb(45, 43, 43);
+    color: whitesmoke;
+    text-align: center;
 }
