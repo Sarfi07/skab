@@ -1,0 +1,11 @@
+.login_div {
+    padding-top: 48px;
+    width: 80vw;
+    margin:auto;
+}
+
+.logout_btn > button > a{
+    text-decoration: none;
+    font-size: 16px;
+    color: black
+}
