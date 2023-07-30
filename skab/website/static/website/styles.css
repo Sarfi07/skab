@@ -9,7 +9,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-
+    
 }
 
 .main {
@@ -40,7 +40,7 @@ body {
     font-size: 16px;
     color: black
 }
-.new_bill_btn> a {
+.new_bill_btn > a , .new_product_btn> a {
     text-decoration: none;
     color: whitesmoke;
     font-weight: bolder;
@@ -50,7 +50,7 @@ body {
     list-style: none;
 }
 
-.new_bill {
+.new_bill, .new_product {
     margin: 16px auto;
     display: flex;
     justify-content: center;
@@ -59,7 +59,7 @@ body {
 
 }
 
-.new_bill_btn {
+.new_bill_btn, .new_product_btn {
     height: 48px;
     width: 80vw;
     margin: auto;

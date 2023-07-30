@@ -1,0 +1,15 @@
+{% extends "website/layout2.html" %}
+
+{% load static %}
+{% block title %}QR Index{% endblock %}
+
+{% block main %}QR
+<div class="message"></div>
+<div class="product_form">
+    <form action="{% url 'new_product' %}" method="post" class="form-group">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+</div>
+{% endblock %}
