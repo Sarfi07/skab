@@ -11,10 +11,16 @@ class Categorie(models.Model):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=128)
 
+    def __str__(self) -> str:
+        return f"{self.name}"
+
 
 class Brand(models.Model):
     name = models.CharField(max_length=32)
     description = models.CharField(max_length=128)
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 class Product(models.Model):
     # stock_code, gender age-group, brand, rate, quantity, shade
@@ -22,7 +28,7 @@ class Product(models.Model):
     description = models.CharField(max_length=128)
     sku = models.CharField(max_length=16)
     price = models.PositiveIntegerField()
-    quantity_in_stock = models.PositiveIntegerField()
+    # quantity_in_stock = models.PositiveIntegerField()
     size = models.CharField(max_length=8, null=True, blank=True)
     color = models.CharField(max_length=16, blank=True, null=True)
     material = models.CharField(max_length=32)
@@ -30,6 +36,8 @@ class Product(models.Model):
     categoryId = models.ForeignKey(Categorie, on_delete=models.CASCADE)
     brandId = models.ForeignKey(Brand, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return f"{self.sku}: {self.product_name} having price Rs. {self.price}"
 
 
 
@@ -43,6 +51,10 @@ class Stock(models.Model):
 class Customer(models.Model):
     name = models.CharField(max_length=64)
     email = models.EmailField()
+
+    def __str__(self) -> str:
+        return f"{self.name}, {self.email}"
+    
 
 
 class Sales(models.Model):
