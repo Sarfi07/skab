@@ -10,4 +10,59 @@
 <div class="new_product">
     <button class="new_product_btn"><a href="{% url 'new_product' %}">+ New Product</a></button>
 </div>
+
+<div class="product_list">
+    <table>
+        <colgroup>
+            <col span="2">
+            <col style="background-color: #97DB9A;">
+            <!-- <col style="width: 16px;">
+            <col> -->
+            <col style="width: 16px;">
+            <col style="width:16px; background-color: skyblue;">
+        </colgroup>
+        <tr>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>SKU*</th>
+            <!-- <th>Size</th>
+            <th>Color</th> -->
+            <th>Price</th>
+            <th>Generate Qr</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.product_name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.sku }}</td>
+            <!-- {% if product.size %}
+            <td>{{ product.size }}</td>
+            {% else %}
+            <td>&nbsp;</td>
+            {% endif %}
+
+            {% if product.color %}
+            <td>{{ product.color }}</td>
+            {% else %}
+            <td>&nbsp;</td>
+            {% endif %} -->
+
+            {% if product.price %}
+            <td>{{ product.price }}</td>
+            {% else %}
+            <td>&nbsp;</td>
+            {% endif %}
+
+            <td><a href="{% url 'generate_qrcode' product.sku %}"><img src="{% static 'website/images/qrcode.svg' %}" alt="Qr Icon"></a></td>
+        </tr>
+
+        {% endfor %}
+
+
+
+        </tr>
+
+
+    </table>
+</div>
 {% endblock %}

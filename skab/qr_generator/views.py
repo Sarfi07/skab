@@ -5,14 +5,18 @@ from django.urls import reverse
 
 from .productForm import Product_form
 from .models import Product, Categorie, Customer, Sale_item, Stock, Sales
+import qrcode
 # Create your views here.
+
 
 
 def index(request):
     if request.user.is_authenticated:
-        form = Product_form()
+        products = Product.objects.all()
 
-        return render(request, "qr_generator/qr_index.html")
+        return render(request, "qr_generator/qr_index.html", {
+            "products": products
+        })
     else:
         return HttpResponseRedirect(reverse('login'))
 
@@ -83,3 +87,13 @@ def new_product_view(request):
         return render(request, "qr_generator/new_product.html", {
             "form": form
         })
+    
+def generate_qr_view(request, sku_code):
+    data = sku_code
+    qr_code = qrcode.make(data)
+    path = "website/static/website/qr_codes/"
+    file_name = f"{sku_code}.png"
+    full_file_path = path+file_name
+    qr_code.save(full_file_path)
+
+    return HttpResponseRedirect(reverse('qr_index'))

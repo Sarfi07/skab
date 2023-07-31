@@ -94,3 +94,66 @@ body {
     color: whitesmoke;
     text-align: center;
 }
+
+/* styles1.css file */
+.login_div {
+    padding-top: 48px;
+    width: 80vw;
+    margin:auto;
+}
+
+.logout_btn > button > a{
+    text-decoration: none;
+    font-size: 16px;
+    color: red;
+}
+
+.product_form {
+    margin: 48px;
+    
+}
+
+.product_form > form > label {
+    padding-top: 32px;
+}
+
+label {
+    font-weight: bolder;
+    font-size: 16px;
+
+}
+
+form > button {
+    margin-top: 32px;
+    border-radius: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid rgb(200,200,200);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+
+  td, th {
+    border: 1px solid rgb(190,190,190);
+    padding: 10px 20px;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  caption {
+    padding: 10px;
+  }
+
+
+.product_list {
+    width: 100vw;
+    padding: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
