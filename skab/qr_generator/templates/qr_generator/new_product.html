@@ -9,6 +9,26 @@
     <form action="{% url 'new_product' %}" method="post" class="form-group">
         {% csrf_token %}
         {{ form }}
+        <div class="brands">
+            <label for="brand">Brand:</label>
+            <select name="brand-name" id="brand" class="form-control">
+                <option disabled selected>Select--</option>
+                {% for brand in brands %}
+                    <option value="{{ brand }}">{{ brand }}</option>
+                {% empty %}
+                    <option value="No Brand" disabled>No Brand</option>
+                {% endfor %}
+            </select>
+            <label for="category">Category:</label>
+            <select name="category" id="category" class="form-control">
+                <option disabled selected>Select--</option>
+                {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+                {% empty %}
+                    <option value="No Category">No Category</option>
+                {% endfor %}
+            </select>
+        </div>
         <button class="btn btn-primary" type="submit">Create</button>
     </form>
 </div>

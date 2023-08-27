@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from .productForm import Product_form
-from .models import Product, Categorie, Customer, Sale_item, Stock, Sales
+from .models import Product, Categorie, Customer, Sale_item, Stock, Sales, Brand
 import qrcode
 # Create your views here.
 
@@ -51,15 +51,20 @@ def new_product_view(request):
         form = Product_form(request.POST)
 
         if form.is_valid():
-            product_name = form.cleaned_data["product_form"]
+            product_name = form.cleaned_data["product_name"]
             description = form.cleaned_data["description"]
             sku = form.cleaned_data["sku"]
             price = form.cleaned_data["price"]
             size = form.cleaned_data["size"]
             color = form.cleaned_data["color"]
-            shade = form.cleaned_data["shade"]
+            # shade = form.cleaned_data["shade"]
             material = form.cleaned_data["material"]
             imageURL = form.cleaned_data["imageURL"]
+            brand = request.POST["brand-name"]
+            brand = Brand.objects.get(name=brand)
+            
+            category = request.POST["category"]
+            category = Categorie.objects.get(name=category)
 
 
             product_check = Product.objects.filter(sku=sku)
@@ -71,11 +76,14 @@ def new_product_view(request):
                     price=price,
                     size=size,
                     color=color,
-                    shade=shade,
+                    # shade=shade,
                     material=material,
-                    imageURL=imageURL
+                    imageURL=imageURL,
+                    brand=brand,
+                    category=category
                 )
                 product_obj.save()
+                return HttpResponseRedirect(reverse("qr_index"))
             else:
                 # if already SKU already present then return populated form with enterend data in order to modify
                 return HttpResponseRedirect(reverse("new_product", kwargs={
@@ -84,8 +92,12 @@ def new_product_view(request):
     else:
         # return new form
         form = Product_form()
+        brands = Brand.objects.all()
+        categories = Categorie.objects.all()
         return render(request, "qr_generator/new_product.html", {
-            "form": form
+            "form": form,
+            "brands": brands,
+            "categories": categories
         })
     
 def generate_qr_view(request, sku_code):

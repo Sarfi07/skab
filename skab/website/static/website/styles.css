@@ -157,3 +157,14 @@ table {
     justify-content: center;
     align-items: center;
 }
+
+
+/* new bill page */
+#preview {
+    height: 30vh;
+    width: 30vh;
+    margin: auto;
+    margin-top: 48px;
+    border: 2px solid red;
+    border-radius: 5px;
+}

@@ -33,8 +33,8 @@ class Product(models.Model):
     color = models.CharField(max_length=16, blank=True, null=True)
     material = models.CharField(max_length=32)
     imageURL = models.URLField()
-    categoryId = models.ForeignKey(Categorie, on_delete=models.CASCADE)
-    brandId = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    category = models.ForeignKey(Categorie, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.sku}: {self.product_name} having price Rs. {self.price}"
