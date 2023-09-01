@@ -4,11 +4,14 @@
 
 {% block main %}New Bill
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-</script>
 
 <div id="reader"></div>
+<div id="csrf-token" data-csrfToken="{{ csrf_token}}"></div>
 
 <script>
+
+    var csrfToken = document.getElementById('csrf-token')
+
     const scanner = new Html5QrcodeScanner('reader', {
         qrbox: {
             width: 320,
@@ -21,12 +24,82 @@
 
     function success(result) {
         console.log(result);
+        fetch(`/skuObj/${result}`)
+        .then (response => response.json())
+        .then (result => {
+
+            let obj = JSON.parse(result)
+
+            console.log(typeof(obj))
+
+            let id = document.createElement('td');
+            id.textContent = obj[0].pk;
+
+            let skuData = document.createElement('td');
+            skuData.textContent = obj[0].fields.sku;
+
+            let descriptionData = document.createElement('td');
+            descriptionData.textContent = obj[0].fields.description;
+
+            let rate = document.createElement('td');
+            rate.textContent = obj[0].fields.price;
+
+            let elements = [id, skuData, descriptionData, rate];
+
+            console.log(elements)
+
+            addTr(elements)
+
+
+            console.log(obj)
+        })
     }
 
     function error(result) {
         console.error(err);
     }
+
+    function addTr(elements) {
+
+        let tbody = document.getElementById('tableBody')
+        let trElement = document.createElement('tr');
+
+
+
+        for (let i = 0; i < 4; i++) {
+           trElement.appendChild(elements[i])
+        }
+
+        tbody.appendChild(trElement)
+    }
 </script>
+
+
+<div class="billContent">
+    <table id="billTable">
+        <caption style="caption-side: top; font-size: 32px; text-align: center;">Billing Table</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>SKU</th>
+                <th>Description</th>
+                <th>Rate</th>
+                <th>Amount</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- here goes the product details -->
+        </tbody>
+        <tfoot>
+            <tr>
+                
+                <td colspan="5">Gross Total</td>
+                <td>XXXX</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 
 
 {% endblock %}
