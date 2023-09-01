@@ -12,6 +12,12 @@
 
     <script type="text/javascript" src="../../static/website/javascript/instascan.min.js"></script>
 
+        <!-- Other meta tags and content -->
+        <meta name="csrf-token" content="{% csrf_token %}">
+
+        {% block script %}
+        {% endblock %}
+    
 
 </head>
 <body>

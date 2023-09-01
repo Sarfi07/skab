@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from  qr_generator.models import Product, Brand, Categorie
+from django.core.serializers import serialize
 
 # Create your views here.
 def index(request):
@@ -23,3 +26,11 @@ def history_view(request):
 def about_view(request):
 
     return render(request, "website/about.html")
+
+
+def skuObj_view(request, sku):
+
+    skuObj = Product.objects.get(sku=sku)
+    data = serialize('json', [skuObj])
+
+    return JsonResponse(data, safe=False)

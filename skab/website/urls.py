@@ -8,4 +8,5 @@ urlpatterns = [
     path('stock', views.stock_view, name="stock"),
     path('history', views.history_view, name='history'),
     path('about', views.about_view, name="about"),
+    path('skuObj/<str:sku>', views.skuObj_view, name="skuObj"),
 ]
